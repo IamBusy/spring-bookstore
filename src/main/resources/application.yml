@@ -1,0 +1,17 @@
+# Server configuration
+server:
+  port: 8090
+  contextPath:
+
+# Spring configuration
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: bookstore
+
+
