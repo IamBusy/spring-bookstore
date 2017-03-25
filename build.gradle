@@ -1,9 +1,23 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+        lombokVersion = '1.16.14'
+    }
 
-plugins {
-    id 'org.springframework.boot' version '1.5.2.RELEASE'
-    id 'java'
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
 
 
 jar {
@@ -15,7 +29,11 @@ repositories {
     jcenter()
 }
 
+
+
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.projectlombok:lombok")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
