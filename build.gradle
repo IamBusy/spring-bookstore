@@ -34,5 +34,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-rest")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.projectlombok:lombok")
+    compile("org.springframework.boot:spring-boot-starter-activemq")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
