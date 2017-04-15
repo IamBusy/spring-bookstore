@@ -8,10 +8,17 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+
   data:
     mongodb:
       host: localhost
       port: 27017
       database: bookstore
+
+
+  activemq:
+    broker-url: localhost:61616
+    user: admin
+    password: admin
 
 
