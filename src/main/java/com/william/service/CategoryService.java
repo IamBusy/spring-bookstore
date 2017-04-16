@@ -1,6 +1,7 @@
 package com.william.service;
 
 import com.william.model.Category;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,8 +12,10 @@ import java.util.List;
 @Transactional
 public interface CategoryService {
     Category create(Category category);
+    @Cacheable(value = "category",keyGenerator = "wiselyKeyGenerator")
     Category show(String id);
     Category update(Category category);
+    @Cacheable(value = "categories",keyGenerator = "wiselyKeyGenerator")
     List<Category> findAll();
     Category destroy(String id);
 }

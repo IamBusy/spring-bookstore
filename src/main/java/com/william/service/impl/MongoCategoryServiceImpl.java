@@ -4,6 +4,7 @@ import com.william.model.Category;
 import com.william.repository.CategoryRepository;
 import com.william.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
