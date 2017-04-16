@@ -33,20 +33,17 @@ public class MongoOrderServiceImpl implements OrderService {
 
     @Override
     public Order create(User user, List<OrderProduct> products) {
-        products = new ArrayList<>();
-        user.setId("this is userId");
-
         Destination destination = new ActiveMQQueue(processCreationQue);
-        Map<String,Object> payload = new HashMap<String,Object>();
+        Map<String,Object> payload = new HashMap<>();
         payload.put("userId",user.getId());
         payload.put("products",products);
         producer.sendMessage(destination,payload);
+        return null;
 
-
-        Order order = new Order();
-        order.setUser(user);
-        order.setProducts(products);
-        return repository.insert(order);
+//        Order order = new Order();
+//        order.setUser(user);
+//        order.setProducts(products);
+//        return repository.insert(order);
     }
 
     @Override
