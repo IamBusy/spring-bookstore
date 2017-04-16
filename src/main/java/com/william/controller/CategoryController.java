@@ -2,13 +2,9 @@ package com.william.controller;
 
 import com.william.model.Category;
 import com.william.model.Product;
-import com.william.repository.CategoryRepository;
-import com.william.repository.ProductRepository;
 import com.william.service.CategoryService;
 import com.william.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +16,6 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
 
-
-    @Autowired
-    private CategoryRepository repository;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -62,8 +55,7 @@ public class CategoryController {
     @RequestMapping("/{id}/products")
     public List<Product> findAllProducts(@PathVariable String id)
     {
-        return productService.findAll(repository.findOne(id));
+        return productService.findAll(service.show(id));
     }
-
 
 }
