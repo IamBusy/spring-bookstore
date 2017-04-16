@@ -10,7 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * Created by william on 16/04/2017.
  */
-@ServerEndpoint(value = "chatroom")
+@ServerEndpoint(value = "/chatroom")
 @Component
 public class Chatroom {
 
