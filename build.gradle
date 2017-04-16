@@ -35,6 +35,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.springframework.boot:spring-boot-starter-data-redis")
     compile("org.springframework.boot:spring-boot-starter-jta-atomikos")
+    compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.projectlombok:lombok")
     compile("org.springframework.boot:spring-boot-starter-activemq")
     testCompile('org.springframework.boot:spring-boot-starter-test')
