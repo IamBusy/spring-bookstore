@@ -3,4 +3,4 @@
 build/
 out/
 settings.gradle
-
+transaction-logs/

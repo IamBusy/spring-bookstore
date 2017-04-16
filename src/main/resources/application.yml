@@ -3,6 +3,11 @@ server:
   port: 8090
   contextPath:
 
+#
+jms:
+  orders:
+    create: orders.process.create
+
 # Spring configuration
 spring:
   jackson:
@@ -20,5 +25,9 @@ spring:
     broker-url: tcp://localhost:61616
     user: admin
     password: admin
+    packages:
+      trust-all: true
+
+
 
 
