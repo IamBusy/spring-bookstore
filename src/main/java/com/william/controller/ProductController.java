@@ -43,6 +43,14 @@ public class ProductController {
         return service.update(product);
     }
 
+    @RequestMapping("recommendation")
+    public List<Product> recommendation() {
+        List<Product> products = service.findAll();
+        if(products.size() < 6)
+            return products;
+        return products.subList(0,6);
+    }
+
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public Product destroy(@PathVariable String id)
     {

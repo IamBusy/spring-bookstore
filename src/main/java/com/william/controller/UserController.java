@@ -43,5 +43,11 @@ public class UserController {
         return service.destroy(id);
     }
 
-
+    @RequestMapping("/info")
+    public User info(@RequestHeader String authorization) {
+        String token = authorization.substring(7);
+        User user = service.show(token);
+        user.setPassword("");
+        return user;
+    }
 }

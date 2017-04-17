@@ -15,5 +15,5 @@ public interface UserService {
     User update(User user);
     List<User> findAll();
     User destroy(String id);
-
+    List<User> findByUsernameAndPassword(String username, String password);
 }

@@ -8,6 +8,7 @@ import com.william.repository.OrderRepository;
 import com.william.service.OrderService;
 import com.william.utils.MessageProducer;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,11 @@ public class MongoOrderServiceImpl implements OrderService {
         Destination destination = new ActiveMQQueue(processCreationQue);
         Map<String,Object> payload = new HashMap<>();
         payload.put("userId",user.getId());
-        payload.put("products",products);
+        List<Map<String,String>>pds = new ArrayList<>();
+        products.forEach((item) -> {
+            pds.add(item.toMap());
+        });
+        payload.put("products",pds);
         producer.sendMessage(destination,payload);
         return null;
 
@@ -58,7 +63,7 @@ public class MongoOrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAll(User user) {
-        return repository.findByUserId(user.getId());
+        return repository.findByUserId(new ObjectId(user.getId()));
     }
 
     @Override

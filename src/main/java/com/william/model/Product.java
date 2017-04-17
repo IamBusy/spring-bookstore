@@ -12,14 +12,14 @@ import java.math.BigDecimal;
 @Data
 public class Product  implements Serializable {
     @Id
-    private String id;
-    private String cover;
-    private String name;
-    private String publisher;
-    private String author;
-    private String categoryId;
-    private BigDecimal price;
+    protected String id;
+    protected String cover;
+    protected String name;
+    protected String publisher;
+    protected String author;
+    protected String categoryId;
+    protected BigDecimal price;
 
 
-    private Category category;
+    protected Category category;
 }

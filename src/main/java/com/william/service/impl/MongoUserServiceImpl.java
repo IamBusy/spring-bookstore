@@ -18,7 +18,12 @@ public class MongoUserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return userRepository.insert(user);
+        User uu = userRepository.findByUsername(user.getUsername());
+        System.out.print(uu);
+        if(uu == null) {
+            return userRepository.insert(user);
+        }
+        return null;
     }
 
     @Override
@@ -41,5 +46,9 @@ public class MongoUserServiceImpl implements UserService {
         User user = userRepository.findOne(id);
         userRepository.delete(id);
         return user;
+    }
+    @Override
+    public List<User> findByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username,password);
     }
 }
