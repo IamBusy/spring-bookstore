@@ -8,6 +8,15 @@ jms:
   orders:
     create: orders.process.create
 
+cxf:
+  path: /ws
+#  servlet:
+#    init:
+#      service-list-path: /ws/info
+#  jaxrs:
+#    component-scan: true
+#    classes-scan-packages: com.william.service
+
 # Spring configuration
 spring:
   jackson:
@@ -35,6 +44,8 @@ spring:
 
   aop:
     auto: true
+
+
 
 
 

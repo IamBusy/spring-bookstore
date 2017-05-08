@@ -1,3 +1,7 @@
+configurations {
+    jaxb
+}
+
 buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
@@ -19,15 +23,52 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 
+task genJaxb {
+    ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
+    ext.classesDir = "${buildDir}/classes/jaxb"
+    ext.schema = "src/main/resources/products.xsd"
+
+    outputs.dir classesDir
+
+    doLast() {
+        project.ant {
+            taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
+                    classpath: configurations.jaxb.asPath
+            mkdir(dir: sourcesDir)
+            mkdir(dir: classesDir)
+
+            xjc(destdir: sourcesDir, schema: schema) {
+                arg(value: "-wsdl")
+                produces(dir: sourcesDir, includes: "**/*.java")
+            }
+
+            javac(destdir: classesDir, source: 1.6, target: 1.6, debug: true,
+                    debugLevel: "lines,vars,source",
+                    classpath: configurations.jaxb.asPath) {
+                src(path: sourcesDir)
+                include(name: "**/*.java")
+                include(name: "*.java")
+            }
+
+            copy(todir: classesDir) {
+                fileset(dir: sourcesDir, erroronmissingdir: false) {
+                    exclude(name: "**/*.java")
+                }
+            }
+        }
+    }
+}
+
+
 jar {
     baseName = 'bookstore'
     version =  '0.0.1-SNAPSHOT'
+    from genJaxb.classesDir
 }
 
 repositories {
     jcenter()
 }
-
 
 
 dependencies {
@@ -37,7 +78,12 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jta-atomikos")
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-aop")
-    //compile("org.springframework.boot:spring-boot-starter-security")
+
+    compile("org.springframework.boot:spring-boot-starter-web-services")
+    compile("wsdl4j:wsdl4j:1.6.1")
+    jaxb("org.glassfish.jaxb:jaxb-xjc:2.2.11")
+    compile(files(genJaxb.classesDir).builtBy(genJaxb))
+
     compile("org.projectlombok:lombok")
     compile("org.springframework.boot:spring-boot-starter-activemq")
     testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -45,3 +91,4 @@ dependencies {
     //compile ""
     //compile "redis.clients:jedis:2.6.1"
 }
+
