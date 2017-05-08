@@ -1,0 +1,31 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+<xs:element name="getProductRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="getProductResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="product" type="tns:product"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:complexType name="product">
+    <xs:sequence>
+        <xs:element name="id" type="xs:string"/>
+        <xs:element name="cover" type="xs:string"/>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element name="publisher" type="xs:string"/>
+        <xs:element name="author" type="xs:string"/>
+        <xs:element name="categoryId" type="xs:string"/>
+        <xs:element name="price" type="xs:decimal"/>
+    </xs:sequence>
+</xs:complexType>
+</xs:schema>
