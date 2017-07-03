@@ -28,7 +28,11 @@ spring:
       host: localhost
       port: 27017
       database: bookstore
-
+    elasticsearch:
+      properties:
+        path:
+          logs: ./elasticsearch/log
+          data: ./elasticsearch/data
 
   activemq:
     broker-url: tcp://localhost:61616
@@ -44,6 +48,8 @@ spring:
 
   aop:
     auto: true
+
+
 
 
 

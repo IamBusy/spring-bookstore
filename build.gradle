@@ -78,6 +78,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jta-atomikos")
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
     compile("org.springframework.boot:spring-boot-starter-web-services")
     compile("wsdl4j:wsdl4j:1.6.1")
