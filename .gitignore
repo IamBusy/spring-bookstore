@@ -4,3 +4,5 @@ build/
 out/
 settings.gradle
 transaction-logs/
+.DS_Store
+elasticsearch
